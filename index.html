@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library</title>
+</head>
+<body>
+  
+  <script>
+    function getBook(title, author, pages, read) {
+      this.title = title;
+      this.author = author;
+      this.pages = pages;
+      this.read = read;
+      this.info = function() {
+        return `${title} by ${author}, ${pages} pages, ${read}`
+      }
+    }
+
+    const hobbit = new getBook('The Hobbit', 'J.R.R. Tolkien', 295, 'read');
+    console.log(hobbit.info())
+    const donQuixote = new getBook('Don Quixote', 'Miguel De Cervantes', 928, 'have not read');
+    console.log(donQuixote.info())
+    const taleOfTwoCities = new getBook('Tale of Two Cities', 'Charles Dickens', 304, 'read');
+    console.log(taleOfTwoCities.info())
+  </script>
+</body>
+</html>
