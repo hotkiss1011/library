@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("/images/plant-background.png");
+  background-color: #E0EFA6;
+  background-position:bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.header {
+  text-align: center;
+  
+}
+
+.bookshelf {
+  margin: 25px;
+  margin-bottom: 0px;
+  border-radius: 15px;
+  border: 15px solid rgb(173, 125, 86);
+  background-color: rgb(153, 104, 63);
+  padding: 15px;
+}
+
+.book {
+  writing-mode: vertical-rl;
+  text-align: center;
+  background-color: rgb(153, 104, 63);
+  border-radius: 5px;
+  box-shadow: inset -5px 0px 5px rgba(75, 75, 75, 0.76), inset 5px 0px 5px rgba(75, 75, 75, 0.76);
+  height: 225px;
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+}
+
+.author, .title {
+  margin: 0;
+}
