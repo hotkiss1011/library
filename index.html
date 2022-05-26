@@ -5,26 +5,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Library</title>
+
+  <link rel="stylesheet" href="src/index.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 <body>
-  
-  <script>
-    function getBook(title, author, pages, read) {
-      this.title = title;
-      this.author = author;
-      this.pages = pages;
-      this.read = read;
-      this.info = function() {
-        return `${title} by ${author}, ${pages} pages, ${read}`
-      }
-    }
-
-    const hobbit = new getBook('The Hobbit', 'J.R.R. Tolkien', 295, 'read');
-    console.log(hobbit.info())
-    const donQuixote = new getBook('Don Quixote', 'Miguel De Cervantes', 928, 'have not read');
-    console.log(donQuixote.info())
-    const taleOfTwoCities = new getBook('Tale of Two Cities', 'Charles Dickens', 304, 'read');
-    console.log(taleOfTwoCities.info())
-  </script>
+  <div class="container">
+    <div class="header">
+      <h1>My Bookshelf</h1>
+    </div>
+  </div>
+  <script src="src/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>
