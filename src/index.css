@@ -3,20 +3,28 @@ body {
   padding: 0;
   height: 100vh;
   width: 100vw;
-  background-image: url("/images/plant-background.png");
+  background-image: url("/images/plant-background.jpg");
   background-color: #E0EFA6;
   background-position:bottom;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .header {
   text-align: center;
-  
 }
 
 .bookshelf {
-  margin: 25px;
+  width: 50%;
   margin-bottom: 0px;
   border-radius: 15px;
   border: 15px solid rgb(173, 125, 86);
@@ -27,7 +35,7 @@ body {
 .book {
   writing-mode: vertical-rl;
   text-align: center;
-  background-color: rgb(153, 104, 63);
+  background-color: rgb(20, 102, 17);
   border-radius: 5px;
   box-shadow: inset -5px 0px 5px rgba(75, 75, 75, 0.76), inset 5px 0px 5px rgba(75, 75, 75, 0.76);
   height: 225px;
