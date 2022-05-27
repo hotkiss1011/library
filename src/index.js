@@ -20,4 +20,19 @@ const closeButton = document.querySelector("[data-close-button]");
 closeButton.addEventListener("click", closeForm);
 
 // SUBMIT FORM
-const submitButton = document.querySelector("");
+const title = document.querySelector()
+
+let myLibrary = [];
+
+function Book() {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
+}
+
+function addBook (Book) {
+
+}
+
+const submitButton = document.querySelector(".submit-button");
