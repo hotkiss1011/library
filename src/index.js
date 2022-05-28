@@ -40,7 +40,6 @@ function clearForm() {
   author.value = "";
   pages.value = "";
   read.checked = false;
-  return
 }
 
 function addBook () {
