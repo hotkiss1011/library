@@ -20,19 +20,26 @@ const closeButton = document.querySelector("[data-close-button]");
 closeButton.addEventListener("click", closeForm);
 
 // SUBMIT FORM
-const title = document.querySelector()
+const title = document.getElementById("title-input");
+const author = document.getElementById("author-input");
+const pages = document.getElementById("pages-input");
+const read = document.getElementById("read-input");
 
 let myLibrary = [];
 
 function Book() {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+  this.title = title.value;
+  this.author = author.value;
+  this.pages = pages.value;
+  this.read = read.value;
 }
 
-function addBook (Book) {
-
+function addBook () {
+  closeForm();
+  let newBook = new Book;
+  myLibrary.push(newBook);
+  console.log(myLibrary);
 }
 
 const submitButton = document.querySelector(".submit-button");
+submitButton.addEventListener('click', addBook)
