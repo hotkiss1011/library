@@ -28,18 +28,25 @@ const read = document.getElementById("read-input");
 let myLibrary = [];
 
 function Book() {
+  this.id = myLibrary.length;
   this.title = title.value;
   this.author = author.value;
   this.pages = pages.value;
-  this.read = read.value;
+  this.read = read.checked;
+}
+
+function clearForm() {
+  title.value = "";
+  author.value = "";
+  pages.value = "";
+  read.checked = false;
+  return
 }
 
 function addBook () {
   closeForm();
   let newBook = new Book;
   myLibrary.push(newBook);
+  clearForm();
   console.log(myLibrary);
 }
-
-const submitButton = document.querySelector(".submit-button");
-submitButton.addEventListener('click', addBook)
