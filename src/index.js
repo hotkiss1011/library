@@ -61,7 +61,6 @@ function displayBook(book) {
   const totShelfBooks = bottomShelf.childElementCount;
 
   if (totShelfBooks >= 10) {
-    console.log(totShelfBooks);
     let shelf = document.createElement("div");
     shelf.classList.add("shelf");
 
@@ -81,8 +80,6 @@ function displayBook(book) {
     shelf.appendChild(bookDiv);
     bookshelf.appendChild(shelf);
   } else {
-    console.log(totShelfBooks);
-
     let bookDiv = document.createElement("div");
     bookDiv.classList.add("book");
 
