@@ -96,11 +96,27 @@ body {
 
 .bookshelf {
   width: 50%;
+  min-width: 500px;
+  min-height: 110px;
+  max-height: 100%;
+  margin: 20px;
   margin-bottom: 0px;
   border-radius: 15px;
   border: 15px solid rgb(173, 125, 86);
   background-color: rgb(153, 104, 63);
-  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  word-wrap:normal;
+  gap: 5px;
+  overflow-y: auto;
+}
+
+.shelf {
+  display: flex;
+  gap: 5px;
+  padding: 15px 15px 0px 15px;
+  height: 100%;
+  border-bottom: 15px solid rgb(173, 125, 86);
 }
 
 .book {
@@ -110,13 +126,23 @@ body {
   color: rgb(230, 226, 1);
   border-radius: 5px;
   box-shadow: inset -5px 0px 5px rgba(75, 75, 75, 0.76), inset 5px 0px 5px rgba(75, 75, 75, 0.76);
-  height: 225px;
-  width: 90px;
+  height: 110px;
+  width: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .author, .title {
   margin: 0;
+  padding: 0;
+}
+
+.author {
+  font-size: 12px;
+}
+
+.title {
+  font-size: 15px;
 }

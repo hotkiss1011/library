@@ -48,4 +48,54 @@ function addBook () {
   myLibrary.push(newBook);
   clearForm();
   console.log(myLibrary);
+  displayBook(newBook);
+  return myLibrary;
+}
+
+
+// DISPLAY BOOKS ON BOOKSHELF
+const bookshelf = document.querySelector(".bookshelf");
+
+function displayBook(book) {
+  const bottomShelf = bookshelf.lastElementChild;
+  const totShelfBooks = bottomShelf.childElementCount;
+
+  if (totShelfBooks >= 10) {
+    console.log(totShelfBooks);
+    let shelf = document.createElement("div");
+    shelf.classList.add("shelf");
+
+    let bookDiv = document.createElement("div");
+    bookDiv.classList.add("book");
+
+    let bookTitle = document.createElement("h2");
+    bookTitle.textContent = `${book.title}`;
+    bookTitle.classList.add("title");
+
+    let bookAuthor = document.createElement("p");
+    bookAuthor.textContent = `${book.author}`;
+    bookAuthor.classList.add("author");
+
+    bookDiv.appendChild(bookTitle);
+    bookDiv.appendChild(bookAuthor);
+    shelf.appendChild(bookDiv);
+    bookshelf.appendChild(shelf);
+  } else {
+    console.log(totShelfBooks);
+
+    let bookDiv = document.createElement("div");
+    bookDiv.classList.add("book");
+
+    let bookTitle = document.createElement("h2");
+    bookTitle.textContent = `${book.title}`;
+    bookTitle.classList.add("title");
+
+    let bookAuthor = document.createElement("p");
+    bookAuthor.textContent = `${book.author}`;
+    bookAuthor.classList.add("author");
+
+    bookDiv.appendChild(bookTitle);
+    bookDiv.appendChild(bookAuthor);
+    bottomShelf.appendChild(bookDiv);
+  }
 }
