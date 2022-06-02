@@ -14,6 +14,7 @@ addButton.addEventListener('click', displayForm);
 function closeForm() {
   form.classList.remove("active");
   overlay.classList.remove("active");
+  clearForm();
 }
 
 const closeButton = document.querySelector("[data-close-button]");
@@ -43,24 +44,24 @@ function clearForm() {
 }
 
 function addBook () {
-  closeForm();
+  //closeForm();
   let newBook = new Book;
   myLibrary.push(newBook);
-  clearForm();
-  console.log(myLibrary);
+  closeForm();
   displayBook(newBook);
   return myLibrary;
 }
 
+const submitButton = document.querySelector("[data-submit-button]");
+submitButton.addEventListener("click", addBook);
 
 // DISPLAY BOOKS ON BOOKSHELF
 const bookshelf = document.querySelector(".bookshelf");
 
 function displayBook(book) {
   const bottomShelf = bookshelf.lastElementChild;
-  const totShelfBooks = bottomShelf.childElementCount;
 
-  if (totShelfBooks >= 10) {
+  if (myLibrary.length >= 10) {
     let shelf = document.createElement("div");
     shelf.classList.add("shelf");
 
@@ -95,4 +96,5 @@ function displayBook(book) {
     bookDiv.appendChild(bookAuthor);
     bottomShelf.appendChild(bookDiv);
   }
+  return;
 }

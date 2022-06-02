@@ -97,7 +97,6 @@ body {
 .bookshelf {
   width: 50%;
   min-width: 500px;
-  min-height: 110px;
   max-height: 100%;
   margin: 20px;
   margin-bottom: 0px;
@@ -116,6 +115,7 @@ body {
   gap: 5px;
   padding: 15px 15px 0px 15px;
   height: 100%;
+  min-height: 120px;
   border-bottom: 15px solid rgb(173, 125, 86);
 }
 
@@ -126,7 +126,7 @@ body {
   color: rgb(230, 226, 1);
   border-radius: 5px;
   box-shadow: inset -5px 0px 5px rgba(75, 75, 75, 0.76), inset 5px 0px 5px rgba(75, 75, 75, 0.76);
-  height: 110px;
+  height: 120px;
   width: 50px;
   display: flex;
   flex-direction: column;

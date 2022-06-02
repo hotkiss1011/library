@@ -22,7 +22,7 @@
 
     <div class="bookForm">
       <h2>Book Info</h2>
-      <form onsubmit="addBook(); return false;" method="post">
+      <form onsubmit="return false;" method="post">
         <ul>
           <li>
             <label for="title">
@@ -50,7 +50,7 @@
             <input type="checkbox" name="read" id="read-input">
           </li>
           <li class="form-buttons">
-            <input type="submit" value="Submit" class="submit-button">
+            <button data-submit-button class="submit-button">Submit</button>
             <button data-close-button class="close-button">Close</button>
           </li>
         </ul>
