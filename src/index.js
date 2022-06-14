@@ -26,8 +26,18 @@ const author = document.getElementById("author-input");
 const pages = document.getElementById("pages-input");
 const read = document.getElementById("read-input");
 
+// CLEAR FORM
+function clearForm() {
+  title.value = "";
+  author.value = "";
+  pages.value = "";
+  read.checked = false;
+}
+
+// CREATE LIBRARY
 let myLibrary = [];
 
+// CREATE BOOK
 function Book() {
   this.id = myLibrary.length;
   this.title = title.value;
@@ -41,19 +51,30 @@ function Book() {
   }
 }
 
-function clearForm() {
-  title.value = "";
-  author.value = "";
-  pages.value = "";
-  read.checked = false;
-}
-
+// ADD BOOK TO LIBRARY IF NOT ALREADY IN LIBRARY
 function addBook () {
   let newBook = new Book;
-  myLibrary.push(newBook);
-  closeForm();
-  displayBook(newBook);
+  if (myLibrary.some((book) => book.title === newBook.title)) {
+    alert("Sorry! This book has already been added. If you would like to edit the entry, please select the book.") 
+    closeForm();
+  } else {
+    myLibrary.push(newBook);
+    closeForm();
+  }
+  displayBooks();
   return myLibrary;
+}
+
+// REMOVE BOOK FROM LIBRARY
+function removeBook(title) {
+  myLibrary.filter((book) => book.title !== title);
+  displayBooks();
+}
+
+// FIND BOOK
+function findBook(bookTitle) {
+  let book = myLibrary.find((book) => book.title === bookTitle);
+  return book;
 }
 
 const submitButton = document.querySelector("[data-submit-button]");
@@ -62,65 +83,91 @@ submitButton.addEventListener("click", addBook);
 // DISPLAY BOOKS ON BOOKSHELF
 const bookshelf = document.querySelector(".bookshelf");
 
-function displayBook(book) {
-  const bottomShelf = bookshelf.lastElementChild;
+function displayBooks() {
+  //reset bookshelf
+  bookshelf.innerHTML = `<div class="shelf"></div>`;
 
+  // if number of books in library exceeds 10, add another shelf
   if (myLibrary.length % 11 == 0) {
     let shelf = document.createElement("div");
     shelf.classList.add("shelf");
 
-    let bookDiv = document.createElement("button");
-    bookDiv.classList.add("book");
+    myLibrary.forEach(book => {
+      let bookDiv = document.createElement("div");
+      bookDiv.classList.add(`book`);
+      bookDiv.setAttribute("id", `${book.id}`);
 
-    let titleAuth = document.createElement("div");
-    titleAuth.classList.add("titleAuth");
+      let titleAuth = document.createElement("div");
+      titleAuth.classList.add("titleAuth");
 
-    let bookTitle = document.createElement("h2");
-    bookTitle.textContent = `${book.title}`;
-    bookTitle.classList.add("title");
+      let title = document.createElement("h2");
+      title.classList.add("title");
+      title.textContent = book.title;
 
-    let bookAuthor = document.createElement("p");
-    bookAuthor.textContent = `${book.author}`;
-    bookAuthor.classList.add("author");
+      let author = document.createElement("p");
+      author.classList.add("author");
+      author.textContent = book.author;
 
-    let star = document.createElement("div");
-    star.textContent = book.star;
-    star.classList.add("star");
-    star.classList.add(`${book.read}`);
-    star.classList.add(`${book.id}`);
+      let star = document.createElement("button");
+      star.classList.add("star");
+      star.onclick = changeRead;
 
-    titleAuth.appendChild(bookTitle);
-    titleAuth.appendChild(bookAuthor);
-    bookDiv.appendChild(titleAuth)
-    bookDiv.appendChild(star);
-    shelf.appendChild(bookDiv);
-    bookshelf.appendChild(shelf);
-  } else {
-    let bookDiv = document.createElement("button");
-    bookDiv.classList.add(`book`);
+      let starText = document.querySelector("span")
+      starText.classList.add("material-symbols-outlined");
+      starText.textContent = book.star;
 
-    let titleAuth = document.createElement("div");
-    titleAuth.classList.add("titleAuth");
+      titleAuth.appendChild(title);
+      titleAuth.appendChild(author);
+      bookDiv.appendChild(titleAuth);
+      bookDiv.appendChild(star);
+      shelf.appendChild(bookDiv);
+      bookshelf.appendChild(shelf);
+    });
+  } else { //else add the book to the bottom shelf
+    const bottomShelf = bookshelf.lastElementChild;
+    
+    myLibrary.forEach(book => {
+      let bookDiv = document.createElement("div");
+      bookDiv.classList.add(`book`);
+      bookDiv.setAttribute("id", `${book.id}`);
 
-    let bookTitle = document.createElement("h2");
-    bookTitle.textContent = `${book.title}`;
-    bookTitle.classList.add("title");
+      let titleAuth = document.createElement("div");
+      titleAuth.classList.add("titleAuth");
 
-    let bookAuthor = document.createElement("p");
-    bookAuthor.textContent = `${book.author}`;
-    bookAuthor.classList.add("author");
+      let title = document.createElement("h2");
+      title.classList.add("title");
+      title.textContent = book.title;
 
-    let star = document.createElement("div");
-    star.innerHTML = book.star;
-    star.classList.add("star");
-    star.classList.add(`${book.read}`);
-    star.classList.add(`${book.id}`);
+      let author = document.createElement("p");
+      author.classList.add("author");
+      author.textContent = book.author;
 
-    titleAuth.appendChild(bookTitle);
-    titleAuth.appendChild(bookAuthor);
-    bookDiv.appendChild(titleAuth)
-    bookDiv.appendChild(star);
-    bottomShelf.appendChild(bookDiv);
+      let star = document.createElement("button");
+      star.classList.add("star");
+      star.innerHTML = book.star;
+      star.onclick = changeRead;
+
+      titleAuth.appendChild(title);
+      titleAuth.appendChild(author);
+      bookDiv.appendChild(titleAuth);
+      bookDiv.appendChild(star);
+      bottomShelf.appendChild(bookDiv);
+    });
   }
-  return;
+}
+
+// CHANGE READ STATUS
+function changeRead(e) {
+  let title = e.target.parentNode.parentNode.firstChild.firstChild.textContent.replaceAll('"', '');
+  let book = findBook(title);
+
+  book.read = !book.read;
+  
+  if (book.star === `<span class="material-symbols-outlined">star</span>`) {
+    book.star = `<span class="material-symbols-outlined">grade</span>`;
+  } else {
+    book.star = `<span class="material-symbols-outlined">star</span>`;
+  }
+
+  displayBooks();
 }
