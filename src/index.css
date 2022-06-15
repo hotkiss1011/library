@@ -160,7 +160,24 @@ body {
 
 .star {
   background-color:#00000000;
-  color: yellow;
+  color: rgb(230, 226, 1);
   border: none;
   cursor: pointer;
+}
+
+.star:hover {
+  color: rgb(250, 246, 0);
+}
+
+.deleteBtn {
+  background-color: rgb(209, 1, 1);
+  color: white;
+  border-radius: 50px;
+  border: none;
+  height: 50px;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  background-color: rgb(236, 0, 0);
 }
