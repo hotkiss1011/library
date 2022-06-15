@@ -55,7 +55,7 @@ function Book() {
 function addBook () {
   let newBook = new Book;
   if (myLibrary.some((book) => book.title === newBook.title)) {
-    alert("Sorry! This book has already been added. If you would like to edit the entry, please select the book.") 
+    alert("Sorry! This book has already been added to your bookshelf.") 
     closeForm();
   } else {
     myLibrary.push(newBook);
@@ -85,76 +85,57 @@ const bookshelf = document.querySelector(".bookshelf");
 
 function displayBooks() {
   //reset bookshelf
-  bookshelf.innerHTML = `<div class="shelf"></div>`;
+  bookshelf.innerHTML = "";
+  //create first shelf
+  let shelf = document.createElement("div");
+  shelf.classList.add("shelf");
+  bookshelf.appendChild(shelf);
 
-  // if number of books in library exceeds 10, add another shelf
-  if (myLibrary.length % 11 == 0) {
-    let shelf = document.createElement("div");
-    shelf.classList.add("shelf");
+  myLibrary.forEach(book => {
+    let bottomShelf = bookshelf.lastChild;
 
-    myLibrary.forEach(book => {
-      let bookDiv = document.createElement("div");
-      bookDiv.classList.add(`book`);
-      bookDiv.setAttribute("id", `${book.id}`);
+    let bookDiv = document.createElement("div");
+    bookDiv.classList.add(`book`);
+    bookDiv.setAttribute("id", `${book.id}`);
 
-      let titleAuth = document.createElement("div");
-      titleAuth.classList.add("titleAuth");
+    let titleAuth = document.createElement("div");
+    titleAuth.classList.add("titleAuth");
 
-      let title = document.createElement("h2");
-      title.classList.add("title");
-      title.textContent = book.title;
+    let title = document.createElement("h2");
+    title.classList.add("title");
+    title.textContent = book.title;
 
-      let author = document.createElement("p");
-      author.classList.add("author");
-      author.textContent = book.author;
+    let author = document.createElement("p");
+    author.classList.add("author");
+    author.textContent = book.author;
 
-      let star = document.createElement("button");
-      star.classList.add("star");
-      star.onclick = changeRead;
+    let star = document.createElement("button");
+    star.classList.add("star");
+    star.innerHTML = book.star;
+    star.onclick = changeRead;
 
-      let starText = document.querySelector("span")
-      starText.classList.add("material-symbols-outlined");
-      starText.textContent = book.star;
+    let deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("deleteBtn");
+    deleteBtn.innerHTML = `<span class="material-symbols-outlined">
+    delete
+    </span>`;
 
-      titleAuth.appendChild(title);
-      titleAuth.appendChild(author);
-      bookDiv.appendChild(titleAuth);
-      bookDiv.appendChild(star);
+    titleAuth.appendChild(title);
+    titleAuth.appendChild(author);
+    bookDiv.appendChild(titleAuth);
+    bookDiv.appendChild(star);
+    bookDiv.appendChild(deleteBtn);
+    if (bottomShelf.childNodes.length < 10) {
+      bottomShelf.appendChild(bookDiv);
+    } else {
+      let shelf = document.createElement("div");
+      shelf.classList.add("shelf");
       shelf.appendChild(bookDiv);
       bookshelf.appendChild(shelf);
-    });
-  } else { //else add the book to the bottom shelf
-    const bottomShelf = bookshelf.lastElementChild;
-    
-    myLibrary.forEach(book => {
-      let bookDiv = document.createElement("div");
-      bookDiv.classList.add(`book`);
-      bookDiv.setAttribute("id", `${book.id}`);
-
-      let titleAuth = document.createElement("div");
-      titleAuth.classList.add("titleAuth");
-
-      let title = document.createElement("h2");
-      title.classList.add("title");
-      title.textContent = book.title;
-
-      let author = document.createElement("p");
-      author.classList.add("author");
-      author.textContent = book.author;
-
-      let star = document.createElement("button");
-      star.classList.add("star");
-      star.innerHTML = book.star;
-      star.onclick = changeRead;
-
-      titleAuth.appendChild(title);
-      titleAuth.appendChild(author);
-      bookDiv.appendChild(titleAuth);
-      bookDiv.appendChild(star);
-      bottomShelf.appendChild(bookDiv);
-    });
-  }
+    }
+  });
 }
+
 
 // CHANGE READ STATUS
 function changeRead(e) {
@@ -171,3 +152,5 @@ function changeRead(e) {
 
   displayBooks();
 }
+
+displayBooks();
