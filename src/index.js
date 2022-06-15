@@ -119,6 +119,7 @@ function displayBooks() {
     deleteBtn.innerHTML = `<span class="material-symbols-outlined">
     delete
     </span>`;
+    deleteBtn.onclick = removeBook;
 
     titleAuth.appendChild(title);
     titleAuth.appendChild(author);
@@ -139,7 +140,7 @@ function displayBooks() {
 
 // CHANGE READ STATUS
 function changeRead(e) {
-  let title = e.target.parentNode.parentNode.firstChild.firstChild.textContent.replaceAll('"', '');
+  let title = e.target.parentNode.parentNode.firstChild.firstChild.textContent;
   let book = findBook(title);
 
   book.read = !book.read;
@@ -149,6 +150,15 @@ function changeRead(e) {
   } else {
     book.star = `<span class="material-symbols-outlined">star</span>`;
   }
+
+  displayBooks();
+}
+
+// REMOVE BOOK FROM BOOKSHELF
+function removeBook(e) {
+  let title = e.target.parentNode.parentNode.firstChild.firstChild.textContent;
+
+  myLibrary = myLibrary.filter((book) => book.title !== title);
 
   displayBooks();
 }
